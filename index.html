@@ -3,67 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王荣鑫的个人学术主页</title>
+    <title>王小明 - 学术主页</title>
     <style>
-        /* 基础样式 */
+        :root {
+            --primary-color: #2c3e50;   /* 主色调 */
+            --accent-color: #3498db;    /* 强调色 */
+            --text-color: #444;         /* 正文颜色 */
+            --border-color: #e0e0e0;   /* 边框颜色 */
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
         }
 
         body {
+            background: #f8f9fa;
             line-height: 1.6;
-            background-color: #f5f5f5;
-            color: #333;
-            padding: 20px;
+            color: var(--text-color);
         }
 
+        /* 主容器 */
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 30px auto;
+            display: flex;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        /* ========== 左边栏 ========== */
+        .sidebar {
+            flex: 0 0 280px;
             background: white;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
-        h1 {
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 25px;
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: block;
+            object-fit: cover;
+            border: 3px solid var(--border-color);
         }
 
-        h2 {
-            color: #3498db;
-            margin: 20px 0 15px;
-        }
-
-        ul, ol {
-            margin-left: 25px;
-        }
-
-        li {
+        .name {
+            text-align: center;
+            font-size: 28px;
+            color: var(--primary-color);
             margin-bottom: 8px;
         }
 
-        a {
-            color: #3498db;
+        .title {
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        /* 联系方式 */
+        .contact-list {
+            list-style: none;
+            padding: 20px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contact-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .contact-list i {
+            width: 28px;
+            color: var(--accent-color);
+            font-size: 18px;
+        }
+
+        .contact-list a {
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .contact-list a:hover {
+            color: var(--accent-color);
+        }
+
+        /* ========== 右边栏 ========== */
+        .main-content {
+            flex: 1;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            margin: 30px 0 25px;
+            font-size: 22px;
+        }
+
+        /* 教育背景 */
+        .education-item {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .education-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        /* 论文条目 */
+        .publication-item {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #fafafa;
+            transition: transform 0.3s;
+        }
+
+        .publication-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .publication-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .links {
+            margin-top: 12px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin-right: 15px;
+            padding: 6px 12px;
+            background: var(--accent-color);
+            color: white !important;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .links a:hover {
+            background: var(--primary-color);
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* 视频容器响应式 */
+        /* 视频容器 */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 宽高比 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
+            border-radius: 8px;
             margin: 20px 0;
         }
 
@@ -76,76 +188,130 @@
             border: none;
         }
 
-        /* 移动端优化 */
+        /* ========== 响应式设计 ========== */
         @media (max-width: 768px) {
             .container {
-                padding: 15px;
+                flex-direction: column;
+                padding: 0 10px;
             }
-            h1 {
-                font-size: 24px;
+
+            .sidebar {
+                width: 100%;
+                padding: 25px;
+            }
+
+            .avatar {
+                width: 140px;
+                height: 140px;
+            }
+
+            .main-content {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 20px;
             }
         }
     </style>
+    <!-- Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <!-- 个人信息 -->
-        <header>
-            <h1>王荣鑫 博士</h1>
-            <p>博士 | 清华大学</p>
-        </header>
-
-        <!-- 教育背景 -->
-        <section>
-            <h2>📚 教育背景</h2>
-            <ul>
-                <li>清华大学 · 岩土工程 · 博士 (2021-2024)</li>
-                <li>清华大学 · 岩土工程 · 硕士 (2018-2020)</li>
-                <li>清华大学 · 水利水电工程 · 本科 (2014-2018)</li>
+        <!-- 左边栏：个人信息 -->
+        <aside class="sidebar">
+            <img src="avatar.jpg" alt="王小明" class="avatar">
+            <h1 class="name">王小明</h1>
+            <p class="title">人工智能研究员 | 清华大学</p>
+            
+            <ul class="contact-list">
+                <li><i class="fas fa-envelope"></i>wangxm@tsinghua.edu.cn</li>
+                <li><i class="fas fa-phone"></i>+86 138-0000-0000</li>
+                <li><i class="fas fa-map-marker-alt"></i>北京，中国</li>
+                <li><i class="fab fa-github"></i><a href="https://github.com/yourname">GitHub</a></li>
+                <li><i class="fab fa-google-scholar"></i><a href="#">Google Scholar</a></li>
             </ul>
-        </section>
+        </aside>
 
-        <!-- 发表论文 -->
-        <section>
-            <h2>📄 发表论文</h2>
-            <ol>
-                <li>
-                    <strong>Portable interactive visualization of large-scale simulations in geotechnical engineering using Unity3D</strong><br>
-                    Wang R X, Wang R, Fu P, et al. (2020). Advances in Engineering Software.
-                    <a href="#">[PDF]</a> <a href="#">[Code]</a>
-                </li>
-            </ol>
-        </section>
+        <!-- 右边栏：主要内容 -->
+        <main class="main-content">
+            <!-- 教育背景 -->
+            <section>
+                <h2><i class="fas fa-graduation-cap"></i> 教育背景</h2>
+                <div class="education-item">
+                    <h3>清华大学 - 计算机科学与技术系</h3>
+                    <p>▪ 博士学位（2020-2024）</p>
+                    <p>▪ 研究方向：医学影像分析、深度学习</p>
+                    <p>▪ 导师：李华教授</p>
+                </div>
+                <div class="education-item">
+                    <h3>北京大学 - 信息科学技术学院</h3>
+                    <p>▪ 硕士学位（2017-2020）</p>
+                    <p>▪ 研究方向：计算机视觉、模式识别</p>
+                    <p>▪ GPA：3.8/4.0</p>
+                </div>
+            </section>
 
-        <!-- 专利 -->
-        <section>
-            <h2>📜 授权专利</h2>
-            <ul>
-                <li>基于特征融合的施工阶段智能识别模型、方法及装置 · 中国发明专利 CN202211492734.7</li>
-            </ul>
-        </section>
+            <!-- 发表论文 -->
+            <section>
+                <h2><i class="fas fa-file-alt"></i> 发表论文</h2>
+                <div class="publication-item">
+                    <h3>Multi-modal Medical Image Segmentation Using 3D Attention Network</h3>
+                    <p><strong>Wang X.M.</strong>, Li H., Chen Q. <em>IEEE Transactions on Medical Imaging</em>, 2023 (SCI Q1, IF: 10.6)</p>
+                    <div class="links">
+                        <a href="#"><i class="fas fa-file-pdf"></i> PDF全文</a>
+                        <a href="#"><i class="fas fa-code"></i> 开源代码</a>
+                        <a href="#"><i class="fas fa-database"></i> 数据集</a>
+                    </div>
+                </div>
 
-        <!-- 软件著作权 -->
-        <section>
-            <h2>💻 软件著作权</h2>
-            <ul>
-                <li>基于Android平台的GeoHelper（地质助手）软件v1.0 · 登记号2017SR594824</li>
-            </ul>
-        </section>
+                <div class="publication-item">
+                    <h3>Real-time Industrial Defect Detection System</h3>
+                    <p><strong>Wang X.M.</strong>, Zhang S. <em>CVPR 2022</em> (CCF-A类会议)</p>
+                    <div class="links">
+                        <a href="#"><i class="fas fa-file-pdf"></i> PDF全文</a>
+                        <a href="#"><i class="fas fa-video"></i> 演示视频</a>
+                    </div>
+                </div>
+            </section>
 
-        <!-- 视频演示 -->
-        <section>
-            <h2>🎥 项目演示</h2>
-            <div class="video-container">
-                <!-- 替换 bvid= 后的字符为你的视频BV号 -->
-                <iframe 
-                    src="//player.bilibili.com/player.html?bvid=BV1hH4y1Z7p1&high_quality=1&autoplay=0" 
-                    scrolling="no" 
-                    frameborder="no" 
-                    allowfullscreen> 
+            <!-- 知识产权 -->
+            <section>
+                <h2><i class="fas fa-certificate"></i> 知识产权</h2>
+                <div class="publication-item">
+                    <h3>发明专利：基于深度学习的医学图像分割方法及系统</h3>
+                    <p>▪ 专利号：ZL 2023 1 0123456.7</p>
+                    <p>▪ 授权日期：2023年5月</p>
+                    <p>▪ 发明人：王小明，李华</p>
+                </div>
+
+                <div class="publication-item">
+                    <h3>软件著作权：智能工业检测系统V2.0</h3>
+                    <p>▪ 登记号：2023SR123456</p>
+                    <p>▪ 发布日期：2023年3月</p>
+                    <p>▪ 开发工具：Python/PyTorch</p>
+                </div>
+            </section>
+
+            <!-- 项目演示 -->
+            <section>
+                <h2><i class="fas fa-video"></i> 项目演示</h2>
+                <div class="video-container">
+                    <!-- B站视频嵌入 -->
+                    <iframe src="//player.bilibili.com/player.html?bvid=BV1GJ411x7xx&high_quality=1"
+                            scrolling="no"
+                            frameborder="no"
+                            allowfullscreen>
                     </iframe>
-            </div>
-        </section>
+                </div>
+                <p style="text-align: center; margin-top: 15px;">
+                    <a href="https://www.bilibili.com/video/BV1GJ411x7xx" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> 访问B站高清版本
+                    </a>
+                </p>
+            </section>
+        </main>
     </div>
 </body>
 </html>
