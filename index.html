@@ -39,7 +39,7 @@
             left: 20px;
             top: 30px;
             width: 280px;
-            height: calc(100vh - 60px);
+            height: calc(100vh - 120px);
             background: rgba(245, 245, 245, 0.8);
             backdrop-filter: blur(8px); /* 毛玻璃效果 */
             padding: 30px;
@@ -228,11 +228,16 @@
             top: 0;
             left: 0;
             right: 0;
+            height: 60px;
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            z-index: 2000;
+            z-index: 999;
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        /* 主内容区 */
+        .main-content {
+            margin-top: 30px; /* 与左边栏顶部对齐 */
         }
 
         .nav-container {
@@ -286,6 +291,13 @@
 
         /* 移动端适配 */
         @media (max-width: 768px) {
+              .sidebar {
+    top: 70px; /* 50px导航栏 + 20px间距 */
+    height: calc(100vh - 90px);
+    left: 10px;
+    right: 10px;
+    width: auto;
+  }
             .global-nav {
                 height: 50px;
             }
