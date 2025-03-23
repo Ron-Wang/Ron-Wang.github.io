@@ -22,7 +22,7 @@
         body {
             margin: 0;
             background: 
-                linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92)),
+                linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.32)),
                 url('img/BGM.jpg') no-repeat center center/cover fixed;
             min-height: 100vh;
         }
@@ -58,6 +58,48 @@
             object-fit: cover;
             border: 3px solid var(--border-color);
         }
+                .name {
+            text-align: center;
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .title {
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        /* 联系方式 */
+        .contact-list {
+            list-style: none;
+            padding: 20px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contact-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .contact-list i {
+            width: 28px;
+            color: var(--accent-color);
+            font-size: 18px;
+        }
+
+        .contact-list a {
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .contact-list a:hover {
+            color: var(--accent-color);
+        }
 
         /* ========== 可滚动右边栏 ========== */
         .main-content {
@@ -68,6 +110,89 @@
             position: relative;
             z-index: 1;
             scroll-behavior: smooth; /* 平滑滚动 */
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            margin: 30px 0 25px;
+            font-size: 22px;
+        }
+
+        /* 教育背景 */
+        .education-item {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .education-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        /* 论文条目 */
+        .publication-item {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #fafafa;
+            transition: transform 0.3s;
+        }
+
+        .publication-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .publication-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .links {
+            margin-top: 12px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin-right: 15px;
+            padding: 6px 12px;
+            background: var(--accent-color);
+            color: white !important;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .links a:hover {
+            background: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* 视频容器 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* 其他原有样式保持不变... */
@@ -98,7 +223,12 @@
 
         /* 保留原有教育背景、论文样式... */
     </style>
-    <!-- 图标库链接保持不变... -->
+    <!-- Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 新增学术图标库 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+    
 </head>
 <body>
     <div class="container">
