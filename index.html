@@ -236,12 +236,12 @@
         }
 
         /* 修改导航容器样式 */
-.nav-container {
-  display: flex;
-  justify-content: space-around; /* 关键属性 */
-  gap: 10px;
-  padding: 0 15px;
-}
+        .nav-container {
+            display: flex;
+            justify-content: space-around; /* 关键属性 */
+            gap: 10px;
+            padding: 0 15px;
+        }
 
 /* 调整导航链接样式 */
 .nav-link {
@@ -260,6 +260,20 @@
   margin-bottom: 5px;
   font-size: 18px;
 }
+        .nav-link:hover {
+            background: rgba(var(--accent-color), 0.1);
+            color: var(--accent-color);
+        }
+
+        .nav-link.active {
+            background: var(--accent-color);
+            color: white !important;
+        }
+
+        /* 调整原有右边栏间距 */
+        .main-content {
+            padding-top: 15px; /* 为固定导航留出空间 */
+        }
 
 /* 移动端适配 */
 @media (max-width: 768px) {
