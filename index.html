@@ -222,7 +222,63 @@
             }
         }
 
-        /* 保留原有教育背景、论文样式... */
+        /* 新增顶部导航样式 */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            margin: -35px -35px 25px -35px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 15px;
+            white-space: nowrap;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            background: rgba(var(--accent-color), 0.1);
+            color: var(--accent-color);
+        }
+
+        .nav-link.active {
+            background: var(--accent-color);
+            color: white !important;
+        }
+
+        /* 调整原有右边栏间距 */
+        .main-content {
+            padding-top: 15px; /* 为固定导航留出空间 */
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .main-nav {
+                margin: -25px -25px 15px -25px;
+                padding: 10px 0;
+            }
+            
+            .nav-container {
+                gap: 15px;
+                padding: 0 15px;
+            }
+        }
+        
     </style>
     <!-- Font Awesome图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -256,8 +312,28 @@
 
         <!-- 右边栏：主要内容 -->
         <main class="main-content">
+            <!-- 新增顶部导航 -->
+            <nav class="main-nav">
+                <div class="nav-container">
+                    <a href="#education" class="nav-link active">
+                        <i class="fas fa-graduation-cap"></i> 教育背景
+                    </a>
+                    <a href="#publications" class="nav-link">
+                        <i class="fas fa-file-alt"></i> 发表论文
+                    </a>
+                    <a href="#property" class="nav-link">
+                        <i class="fas fa-certificate"></i> 知识产权
+                    </a>
+                    <a href="#projects" class="nav-link">
+                        <i class="fas fa-microscope"></i> 科研项目
+                    </a>
+                    <a href="#demos" class="nav-link">
+                        <i class="fas fa-video"></i> 项目演示
+                    </a>
+                </div>
+            </nav>
             <!-- 教育背景 -->
-            <section>
+            <section id="education">
                 <h2><i class="fas fa-graduation-cap"></i> 教育背景</h2>
                 <div class="education-item">
                     <h3>清华大学 - 水利水电工程系</h3>
@@ -280,7 +356,7 @@
             </section>
 
             <!-- 发表论文 -->
-            <section>
+            <section id="publications">
                 <h2><i class="fas fa-file-alt"></i> 发表论文</h2>
                 <div class="publication-item">
                     <h3>Portable interactive visualization of large-scale simulations in geotechnical engineering using Unity3D</h3>
@@ -320,7 +396,7 @@
             </section>
 
             <!-- 知识产权 -->
-            <section>
+            <section id="property">
                 <h2><i class="fas fa-certificate"></i> 知识产权</h2>
                 <div class="publication-item">
                     <h3>发明专利：基于特征融合的施工阶段智能识别模型、方法及装置</h3>
@@ -363,7 +439,7 @@
             </section>
 
             <!-- 科研项目 -->
-            <section>
+            <section id="projects">
                 <h2><i class="fas fa-microscope"></i> 科研项目</h2>
                 <div class="publication-item">
                     <h3>横向项目</h3>
@@ -373,7 +449,7 @@
             </section>
 
             <!-- 项目演示 -->
-            <section>
+            <section id="demos">
                 <h2><i class="fas fa-video"></i> 项目演示</h2>
                 <div class="video-container">
                     <!-- B站视频嵌入 -->
@@ -391,5 +467,30 @@
             </section>
         </main>
     </div>
+
+    <!-- 更新滚动高亮脚本 -->
+    <script>
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - sectionHeight/3) {
+                current = section.getAttribute('id'); 
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href').replace('#', '');
+            if (href === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+    </script>
 </body>
 </html>
